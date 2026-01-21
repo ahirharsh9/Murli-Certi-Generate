@@ -17,53 +17,53 @@ from reportlab.lib.enums import TA_CENTER
 LOGO_ID = "1BGvxglcgZ2G6FdVelLjXZVo-_v4e4a42"
 SIGNATURE_ID = "1U0es4MVJgGniK27rcrA6hiLFFRazmwCs"
 
-# ✅ ALL 15 CHARACTER IMAGE IDs (Staff & Subjects)
+# ✅ ALL 15 CHARACTER IMAGE IDs
 CHAR_IDS = {
-    # Staff / Roles
-    "KRISHNA": "17M893cNMFHJMTAdI7q63Rco-IPfbPzDV",       # Mentor
-    "VASHISHTHA": "1zGIr0w-bDKniX_YixYLbWRTvjgQMngFc",    # Expert Teacher
-    "HANUMAN": "1mjModpBJPt6z5_oOWSAFNAbHVKfh92OO",       # Motivator
-    "VISHWAKARMA": "1qeVY4aCjgrNgw-3JoEDbOkYsCKJUlk5N",   # Management
-    "BHISHMA": "19tjccM9X2TGseoqwdLx8r_v0r124RLl_",       # Loyal Staff
-    "SARASWATI": "1yP0MDaBa1nyBnqSbOiYF9YfbY3NZjOfU",     # Anchor
-    "KEVAT": "1TACSn2dkT2CvsEeDzjklrOJ-WxLufcKa",         # Supporter
-    
-    # Subject Experts
-    "VED_VYAS": "1CZu-SqL5_HsjMDXT9RI791koQua7WBCB",      # History
-    "VARAHAMIHIRA": "1K9_yjGTTFt_bEvm2UE3lNBiy5kKLjF6M",  # Geography
-    "HEMCHANDRACHARYA": "18rAhMPr8YEOiC8IE5NkOnuQaDMtlMg4W", # Literature
-    "VIVEKANANDA": "1NmPraE54Y2uX3DSUC4UGijqU9PxbjEVH",   # Global/Current
-    "ARYABHATA": "1oK6X51bZuTJZTbx7IGjqkQ54SB835fSM",     # Maths
-    "GAUTAMA": "1kj-_eSd2ZXDjxY5xY60od5n8yPraWvg2",       # Reasoning
-    "KANADA": "1hWsU_f7kUUacD0xBuYwhu8da2qU00FhI",        # Science
-    "VIDUR": "1WVpPjHz8Ic9-WXfoXTAzg8L1eML81SUG"          # Law/Niti
+    "KRISHNA": "17M893cNMFHJMTAdI7q63Rco-IPfbPzDV",
+    "VASHISHTHA": "1zGIr0w-bDKniX_YixYLbWRTvjgQMngFc",
+    "HANUMAN": "1mjModpBJPt6z5_oOWSAFNAbHVKfh92OO",
+    "VISHWAKARMA": "1qeVY4aCjgrNgw-3JoEDbOkYsCKJUlk5N",
+    "BHISHMA": "19tjccM9X2TGseoqwdLx8r_v0r124RLl_",
+    "SARASWATI": "1yP0MDaBa1nyBnqSbOiYF9YfbY3NZjOfU",
+    "KEVAT": "1TACSn2dkT2CvsEeDzjklrOJ-WxLufcKa",
+    "VED_VYAS": "1CZu-SqL5_HsjMDXT9RI791koQua7WBCB",
+    "VARAHAMIHIRA": "1K9_yjGTTFt_bEvm2UE3lNBiy5kKLjF6M",
+    "HEMCHANDRACHARYA": "18rAhMPr8YEOiC8IE5NkOnuQaDMtlMg4W",
+    "VIVEKANANDA": "1NmPraE54Y2uX3DSUC4UGijqU9PxbjEVH",
+    "ARYABHATA": "1oK6X51bZuTJZTbx7IGjqkQ54SB835fSM",
+    "GAUTAMA": "1kj-_eSd2ZXDjxY5xY60od5n8yPraWvg2",
+    "KANADA": "1hWsU_f7kUUacD0xBuYwhu8da2qU00FhI",
+    "VIDUR": "1WVpPjHz8Ic9-WXfoXTAzg8L1eML81SUG"
 }
 
 # 🎨 ROYAL THEME COLORS
-COLOR_ROYAL_BLUE = colors.HexColor("#002147") # Dark Royal Blue
-COLOR_MAROON = colors.HexColor("#800000")     # Deep Maroon
-COLOR_GOLD = colors.HexColor("#DAA520")       # GoldenRod
+COLOR_ROYAL_BLUE = colors.HexColor("#002147")
+COLOR_MAROON = colors.HexColor("#800000")
+COLOR_GOLD = colors.HexColor("#DAA520")
 
 # ==========================================
-# 🎛️ LAYOUT CONFIGURATION (STUDENT STYLE)
+# 🎛️ SETTINGS (Tame ahiya thi ferfar kari shako)
 # ==========================================
 
-# 1. LOGO SETTINGS (Left Side)
+# 1. MAIN TITLE SETTINGS
+MAIN_TITLE_FONT_SIZE = 30  # Title size nani kari (Original 36 hati)
+
+# 2. LOGO POSITION (Left Side)
 CERT_LOGO_WIDTH = 42 * mm        
 CERT_LOGO_HEIGHT = 42 * mm       
-CERT_LOGO_X_POS = 36 * mm        
+CERT_LOGO_X_POS = 25 * mm  # Logo ne thodo vadhu Left side khasedyo (Original 36 hatu)
 CERT_LOGO_Y_POS = 143 * mm       
 
-# 2. SIGNATURE SETTINGS (Bottom Right)
+# 3. SIGNATURE SETTINGS (Bottom Right)
 CERT_SIGN_WIDTH = 65 * mm        
 CERT_SIGN_HEIGHT = 22 * mm       
 CERT_SIGN_X_POS = 235 * mm       
 CERT_SIGN_Y_POS = 38 * mm        
 
-# 3. CHARACTER IMAGE SETTINGS (Right Side)
+# 4. CHARACTER IMAGE SETTINGS (Right Side)
 CERT_CHAR_WIDTH = 74 * mm        
 CERT_CHAR_HEIGHT = 74 * mm       
-CERT_CHAR_OPACITY = 1.0  # Full Opacity
+CERT_CHAR_OPACITY = 1.0 
 
 # Margins for Character
 CERT_CHAR_MARGIN_RIGHT = 16 * mm    
@@ -101,14 +101,39 @@ def get_transparent_image_reader(img_bytes, opacity=1.0):
     except:
         return None
 
-# ---------------- CERTIFICATE GENERATOR (ROYAL THEME + FIXED LAYOUT) ----------------
+# ---------------- CERTIFICATE GENERATOR ----------------
 def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=landscape(A4))
     width, height = landscape(A4)
     center_x = width / 2
 
-    # --- 1. ROYAL BORDER (Maroon & Gold) ---
+    # ========================================================
+    # 🟢 LAYER 1: BACKGROUND IMAGES (Sauthi pahela dorvanu)
+    # ========================================================
+    
+    # 1. CHARACTER IMAGE (Right Side)
+    char_key = data.get('char_key')
+    if char_key and char_key in char_images_bytes and char_images_bytes[char_key]:
+        char_img = get_transparent_image_reader(char_images_bytes[char_key])
+        if char_img:
+            c.drawImage(char_img, CERT_CHAR_X_POS, CERT_CHAR_Y_POS, width=CERT_CHAR_WIDTH, height=CERT_CHAR_HEIGHT, mask='auto', preserveAspectRatio=True)
+
+    # 2. LOGO (Left Side)
+    if logo_bytes:
+        logo_img = ImageReader(Image.open(logo_bytes))
+        c.drawImage(logo_img, CERT_LOGO_X_POS, CERT_LOGO_Y_POS, width=CERT_LOGO_WIDTH, height=CERT_LOGO_HEIGHT, mask='auto', preserveAspectRatio=True)
+
+    # 3. SIGNATURE IMAGE (Bottom Right)
+    if sign_bytes:
+        img_x = CERT_SIGN_X_POS - (CERT_SIGN_WIDTH / 2)
+        sign_img = ImageReader(Image.open(sign_bytes))
+        c.drawImage(sign_img, img_x, CERT_SIGN_Y_POS, width=CERT_SIGN_WIDTH, height=CERT_SIGN_HEIGHT, mask='auto', preserveAspectRatio=True)
+
+    # ========================================================
+    # 🟡 LAYER 2: BORDERS (Images ni upar)
+    # ========================================================
+    
     # Outer Maroon Border
     c.setStrokeColor(COLOR_MAROON)
     c.setLineWidth(5); c.rect(15*mm, 15*mm, width-30*mm, height-30*mm)
@@ -117,29 +142,17 @@ def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     c.setStrokeColor(COLOR_GOLD)
     c.setLineWidth(2); c.rect(18*mm, 18*mm, width-36*mm, height-36*mm)
 
-    # Decorative Corners (Gold Circles)
+    # Decorative Corners
     c.setFillColor(COLOR_GOLD)
     for x, y in [(15*mm, 15*mm), (width-15*mm, 15*mm), (15*mm, height-15*mm), (width-15*mm, height-15*mm)]:
         c.circle(x, y, 4*mm, fill=1, stroke=0)
 
-    # --- 2. LOGO (Fixed Position) ---
-    if logo_bytes:
-        logo_img = ImageReader(Image.open(logo_bytes))
-        c.drawImage(logo_img, CERT_LOGO_X_POS, CERT_LOGO_Y_POS, width=CERT_LOGO_WIDTH, height=CERT_LOGO_HEIGHT, mask='auto', preserveAspectRatio=True)
+    # ========================================================
+    # 🔴 LAYER 3: TEXT (Sauthi upar)
+    # ========================================================
 
-    # --- 3. CHARACTER IMAGE (Fixed Position) ---
-    char_key = data.get('char_key')
-    if char_key and char_key in char_images_bytes and char_images_bytes[char_key]:
-        char_img = get_transparent_image_reader(char_images_bytes[char_key])
-        if char_img:
-            c.drawImage(char_img, CERT_CHAR_X_POS, CERT_CHAR_Y_POS, width=CERT_CHAR_WIDTH, height=CERT_CHAR_HEIGHT, mask='auto', preserveAspectRatio=True)
-
-    # --- 4. HEADER TEXT (Royal Fonts) ---
-    # Sanskrit Shloka (Optional - kept for Royal feel)
-    c.setFont("Times-BoldItalic", 12); c.setFillColor(COLOR_MAROON)
-    c.drawCentredString(center_x, height - 35*mm, "|| સા વિદ્યા યા વિમુક્તયે ||")
-
-    c.setFont("Times-Bold", 36); c.setFillColor(COLOR_ROYAL_BLUE)
+    # Main Title (Using Configured Size)
+    c.setFont("Times-Bold", MAIN_TITLE_FONT_SIZE); c.setFillColor(COLOR_ROYAL_BLUE)
     c.drawCentredString(center_x, height - 52*mm, "MURLIDHAR ACADEMY")
     
     c.setFont("Times-Roman", 14); c.setFillColor(colors.black)
@@ -151,7 +164,7 @@ def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     c.setFont("Times-Roman", 14); c.setFillColor(colors.gray)
     c.drawCentredString(center_x, height - 85*mm, "This prestigious award is presented to")
 
-    # --- 5. RECIPIENT NAME ---
+    # Recipient Name
     c.setFont("Times-Bold", 32); c.setFillColor(COLOR_MAROON)
     c.drawCentredString(center_x, height - 100*mm, data['recipient_name'].upper())
     
@@ -159,28 +172,23 @@ def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     c.setStrokeColor(COLOR_GOLD); c.setLineWidth(1.5)
     c.line(center_x - 65*mm, height - 103*mm, center_x + 65*mm, height - 103*mm)
 
-    # --- 6. AWARD TITLE ---
+    # Award Title
     c.setFont("Times-Bold", 28); c.setFillColor(COLOR_ROYAL_BLUE)
     c.drawCentredString(center_x, height - 120*mm, data['award_title'])
 
-    # --- 7. DESCRIPTION ---
-    # Using Times-Roman for formal look
+    # Description
     style = ParagraphStyle('Desc', parent=getSampleStyleSheet()['Normal'], fontName='Times-Roman', fontSize=14, leading=18, alignment=TA_CENTER, textColor=colors.black)
     p = Paragraph(data['award_desc'], style)
     w, h = p.wrap(width - 60*mm, 50*mm)
     p.drawOn(c, (width - w)/2, height - 148*mm)
 
-    # --- 8. DATE & SIGNATURE (Fixed Position) ---
+    # Date & Place
     c.setFont("Times-Bold", 12); c.setFillColor(colors.black)
     c.drawString(30*mm, 35*mm, f"Date: {data['date']}")
     c.drawString(30*mm, 29*mm, "Place: Junagadh")
     
-    if sign_bytes:
-        img_x = CERT_SIGN_X_POS - (CERT_SIGN_WIDTH / 2)
-        sign_img = ImageReader(Image.open(sign_bytes))
-        c.drawImage(sign_img, img_x, CERT_SIGN_Y_POS, width=CERT_SIGN_WIDTH, height=CERT_SIGN_HEIGHT, mask='auto', preserveAspectRatio=True)
-
-    line_width = 50*mm
+    # Signature Line & Text
+    line_width = 70*mm # Thodi lambi kari kem ke text lambu che
     line_start_x = CERT_SIGN_X_POS - (line_width / 2)
     line_end_x = CERT_SIGN_X_POS + (line_width / 2)
     line_y = 35*mm
@@ -191,7 +199,8 @@ def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     c.setFont("Times-Roman", 10)
     c.drawCentredString(CERT_SIGN_X_POS, 30*mm, "With Gratitude,")
     c.setFont("Times-Bold", 12)
-    c.drawCentredString(CERT_SIGN_X_POS, 25*mm, "Director")
+    # Updated Director Text
+    c.drawCentredString(CERT_SIGN_X_POS, 25*mm, "Director of Murlidhar Academy")
 
     c.showPage()
     c.save()
