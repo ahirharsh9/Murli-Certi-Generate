@@ -51,8 +51,8 @@ MAIN_TITLE_FONT_SIZE = 30  # Title size nani kari (Original 36 hati)
 # 2. LOGO POSITION (Left Side)
 CERT_LOGO_WIDTH = 42 * mm        
 CERT_LOGO_HEIGHT = 42 * mm       
-CERT_LOGO_X_POS = 25 * mm  # Logo ne thodo vadhu Left side khasedyo (Original 36 hatu)
-CERT_LOGO_Y_POS = 143 * mm       
+CERT_LOGO_X_POS = 32 * mm  # Logo ne thodo vadhu Left side khasedyo (Original 36 hatu)
+CERT_LOGO_Y_POS = 142 * mm       
 
 # 3. SIGNATURE SETTINGS (Bottom Right)
 CERT_SIGN_WIDTH = 65 * mm        
