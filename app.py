@@ -39,13 +39,12 @@ CHAR_IDS = {
     "VIDUR": "1WVpPjHz8Ic9-WXfoXTAzg8L1eML81SUG"          # Law/Niti
 }
 
-# 🎨 THEME COLORS (Keeping it Royal but simple)
+# 🎨 ORIGINAL THEME COLORS (Blue & Red)
 COLOR_BLUE_HEADER = colors.HexColor("#0f5f9a")
 COLOR_AWARD_TITLE = colors.HexColor("#8B0000") # Dark Red
-COLOR_GOLD = colors.HexColor("#B8860B")
 
 # ==========================================
-# 🎛️ ORIGINAL LAYOUT CONFIGURATION (Restored)
+# 🎛️ ORIGINAL LAYOUT CONFIGURATION
 # ==========================================
 
 # 1. LOGO SETTINGS (Left Side)
@@ -60,12 +59,12 @@ CERT_SIGN_HEIGHT = 22 * mm
 CERT_SIGN_X_POS = 235 * mm       
 CERT_SIGN_Y_POS = 38 * mm        
 
-# 3. CHARACTER IMAGE SETTINGS (Right Side - Background)
+# 3. CHARACTER IMAGE SETTINGS (Right Side)
 CERT_CHAR_WIDTH = 74 * mm        
 CERT_CHAR_HEIGHT = 74 * mm       
 CERT_CHAR_OPACITY = 1.0  # Full Opacity
 
-# Margins
+# Margins for Character
 CERT_CHAR_MARGIN_RIGHT = 16 * mm    
 CERT_CHAR_MARGIN_TOP = 24 * mm      
 
@@ -101,31 +100,31 @@ def get_transparent_image_reader(img_bytes, opacity=1.0):
     except:
         return None
 
-# ---------------- CERTIFICATE GENERATOR ----------------
+# ---------------- CERTIFICATE GENERATOR (ORIGINAL STYLE) ----------------
 def generate_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=landscape(A4))
     width, height = landscape(A4)
     center_x = width / 2
 
-    # --- 1. BORDER (Simple Line Border) ---
+    # --- 1. BORDER (Simple Blue Line Border - Original Style) ---
     c.setStrokeColor(COLOR_BLUE_HEADER)
     c.setLineWidth(5); c.rect(15*mm, 15*mm, width-30*mm, height-30*mm)
     c.setLineWidth(1); c.rect(18*mm, 18*mm, width-36*mm, height-36*mm)
 
-    # --- 2. LOGO (Original Position) ---
+    # --- 2. LOGO (Original Left Position) ---
     if logo_bytes:
         logo_img = ImageReader(Image.open(logo_bytes))
         c.drawImage(logo_img, CERT_LOGO_X_POS, CERT_LOGO_Y_POS, width=CERT_LOGO_WIDTH, height=CERT_LOGO_HEIGHT, mask='auto', preserveAspectRatio=True)
 
-    # --- 3. CHARACTER IMAGE (Original Position) ---
+    # --- 3. CHARACTER IMAGE (Original Right Position) ---
     char_key = data.get('char_key')
     if char_key and char_key in char_images_bytes and char_images_bytes[char_key]:
         char_img = get_transparent_image_reader(char_images_bytes[char_key])
         if char_img:
             c.drawImage(char_img, CERT_CHAR_X_POS, CERT_CHAR_Y_POS, width=CERT_CHAR_WIDTH, height=CERT_CHAR_HEIGHT, mask='auto', preserveAspectRatio=True)
 
-    # --- 4. HEADER TEXT ---
+    # --- 4. HEADER TEXT (Helvetica Fonts) ---
     c.setFont("Helvetica-Bold", 32); c.setFillColor(COLOR_BLUE_HEADER)
     c.drawCentredString(center_x, height - 52*mm, "MURLIDHAR ACADEMY")
     
@@ -147,6 +146,7 @@ def generate_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     c.line(center_x - 60*mm, height - 103*mm, center_x + 60*mm, height - 103*mm)
 
     # --- 6. AWARD TITLE ---
+    # Kept Times-Bold only for Title as per original design preference, rest Helvetica
     c.setFont("Times-Bold", 28); c.setFillColor(COLOR_AWARD_TITLE)
     c.drawCentredString(center_x, height - 120*mm, data['award_title'])
 
