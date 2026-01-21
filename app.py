@@ -39,12 +39,13 @@ CHAR_IDS = {
     "VIDUR": "1WVpPjHz8Ic9-WXfoXTAzg8L1eML81SUG"          # Law/Niti
 }
 
-# 🎨 ORIGINAL THEME COLORS (Blue & Red)
-COLOR_BLUE_HEADER = colors.HexColor("#0f5f9a")
-COLOR_AWARD_TITLE = colors.HexColor("#8B0000") # Dark Red
+# 🎨 ROYAL THEME COLORS
+COLOR_ROYAL_BLUE = colors.HexColor("#002147") # Dark Royal Blue
+COLOR_MAROON = colors.HexColor("#800000")     # Deep Maroon
+COLOR_GOLD = colors.HexColor("#DAA520")       # GoldenRod
 
 # ==========================================
-# 🎛️ ORIGINAL LAYOUT CONFIGURATION
+# 🎛️ LAYOUT CONFIGURATION (STUDENT STYLE)
 # ==========================================
 
 # 1. LOGO SETTINGS (Left Side)
@@ -100,65 +101,79 @@ def get_transparent_image_reader(img_bytes, opacity=1.0):
     except:
         return None
 
-# ---------------- CERTIFICATE GENERATOR (ORIGINAL STYLE) ----------------
-def generate_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
+# ---------------- CERTIFICATE GENERATOR (ROYAL THEME + FIXED LAYOUT) ----------------
+def generate_royal_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=landscape(A4))
     width, height = landscape(A4)
     center_x = width / 2
 
-    # --- 1. BORDER (Simple Blue Line Border - Original Style) ---
-    c.setStrokeColor(COLOR_BLUE_HEADER)
+    # --- 1. ROYAL BORDER (Maroon & Gold) ---
+    # Outer Maroon Border
+    c.setStrokeColor(COLOR_MAROON)
     c.setLineWidth(5); c.rect(15*mm, 15*mm, width-30*mm, height-30*mm)
-    c.setLineWidth(1); c.rect(18*mm, 18*mm, width-36*mm, height-36*mm)
+    
+    # Inner Gold Border
+    c.setStrokeColor(COLOR_GOLD)
+    c.setLineWidth(2); c.rect(18*mm, 18*mm, width-36*mm, height-36*mm)
 
-    # --- 2. LOGO (Original Left Position) ---
+    # Decorative Corners (Gold Circles)
+    c.setFillColor(COLOR_GOLD)
+    for x, y in [(15*mm, 15*mm), (width-15*mm, 15*mm), (15*mm, height-15*mm), (width-15*mm, height-15*mm)]:
+        c.circle(x, y, 4*mm, fill=1, stroke=0)
+
+    # --- 2. LOGO (Fixed Position) ---
     if logo_bytes:
         logo_img = ImageReader(Image.open(logo_bytes))
         c.drawImage(logo_img, CERT_LOGO_X_POS, CERT_LOGO_Y_POS, width=CERT_LOGO_WIDTH, height=CERT_LOGO_HEIGHT, mask='auto', preserveAspectRatio=True)
 
-    # --- 3. CHARACTER IMAGE (Original Right Position) ---
+    # --- 3. CHARACTER IMAGE (Fixed Position) ---
     char_key = data.get('char_key')
     if char_key and char_key in char_images_bytes and char_images_bytes[char_key]:
         char_img = get_transparent_image_reader(char_images_bytes[char_key])
         if char_img:
             c.drawImage(char_img, CERT_CHAR_X_POS, CERT_CHAR_Y_POS, width=CERT_CHAR_WIDTH, height=CERT_CHAR_HEIGHT, mask='auto', preserveAspectRatio=True)
 
-    # --- 4. HEADER TEXT (Helvetica Fonts) ---
-    c.setFont("Helvetica-Bold", 32); c.setFillColor(COLOR_BLUE_HEADER)
+    # --- 4. HEADER TEXT (Royal Fonts) ---
+    # Sanskrit Shloka (Optional - kept for Royal feel)
+    c.setFont("Times-BoldItalic", 12); c.setFillColor(COLOR_MAROON)
+    c.drawCentredString(center_x, height - 35*mm, "|| સા વિદ્યા યા વિમુક્તયે ||")
+
+    c.setFont("Times-Bold", 36); c.setFillColor(COLOR_ROYAL_BLUE)
     c.drawCentredString(center_x, height - 52*mm, "MURLIDHAR ACADEMY")
     
-    c.setFont("Helvetica", 12); c.setFillColor(colors.black)
+    c.setFont("Times-Roman", 14); c.setFillColor(colors.black)
     c.drawCentredString(center_x, height - 60*mm, "JUNAGADH")
 
-    c.setFont("Helvetica-Oblique", 18); c.setFillColor(colors.black)
-    c.drawCentredString(center_x, height - 75*mm, "Certificate of Achievement")
+    c.setFont("Times-Italic", 22); c.setFillColor(colors.darkgray)
+    c.drawCentredString(center_x, height - 75*mm, "Certificate of Honor")
 
-    c.setFont("Helvetica", 12); c.setFillColor(colors.gray)
-    c.drawCentredString(center_x, height - 85*mm, "This is proudly presented to")
+    c.setFont("Times-Roman", 14); c.setFillColor(colors.gray)
+    c.drawCentredString(center_x, height - 85*mm, "This prestigious award is presented to")
 
     # --- 5. RECIPIENT NAME ---
-    c.setFont("Helvetica-Bold", 32); c.setFillColor(COLOR_BLUE_HEADER)
+    c.setFont("Times-Bold", 32); c.setFillColor(COLOR_MAROON)
     c.drawCentredString(center_x, height - 100*mm, data['recipient_name'].upper())
     
-    # Line under name
-    c.setStrokeColor(colors.black); c.setLineWidth(0.5)
-    c.line(center_x - 60*mm, height - 103*mm, center_x + 60*mm, height - 103*mm)
+    # Golden Line under name
+    c.setStrokeColor(COLOR_GOLD); c.setLineWidth(1.5)
+    c.line(center_x - 65*mm, height - 103*mm, center_x + 65*mm, height - 103*mm)
 
     # --- 6. AWARD TITLE ---
-    # Kept Times-Bold only for Title as per original design preference, rest Helvetica
-    c.setFont("Times-Bold", 28); c.setFillColor(COLOR_AWARD_TITLE)
+    c.setFont("Times-Bold", 28); c.setFillColor(COLOR_ROYAL_BLUE)
     c.drawCentredString(center_x, height - 120*mm, data['award_title'])
 
     # --- 7. DESCRIPTION ---
-    style = ParagraphStyle('Desc', parent=getSampleStyleSheet()['Normal'], fontName='Helvetica', fontSize=13, leading=16, alignment=TA_CENTER, textColor=colors.darkgray)
+    # Using Times-Roman for formal look
+    style = ParagraphStyle('Desc', parent=getSampleStyleSheet()['Normal'], fontName='Times-Roman', fontSize=14, leading=18, alignment=TA_CENTER, textColor=colors.black)
     p = Paragraph(data['award_desc'], style)
     w, h = p.wrap(width - 60*mm, 50*mm)
-    p.drawOn(c, (width - w)/2, height - 145*mm)
+    p.drawOn(c, (width - w)/2, height - 148*mm)
 
-    # --- 8. DATE & SIGNATURE (Original Position) ---
-    c.setFont("Helvetica-Bold", 12); c.setFillColor(colors.black)
+    # --- 8. DATE & SIGNATURE (Fixed Position) ---
+    c.setFont("Times-Bold", 12); c.setFillColor(colors.black)
     c.drawString(30*mm, 35*mm, f"Date: {data['date']}")
+    c.drawString(30*mm, 29*mm, "Place: Junagadh")
     
     if sign_bytes:
         img_x = CERT_SIGN_X_POS - (CERT_SIGN_WIDTH / 2)
@@ -172,7 +187,11 @@ def generate_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     
     c.setLineWidth(1); c.setStrokeColor(colors.black)
     c.line(line_start_x, line_y, line_end_x, line_y)
-    c.drawCentredString(CERT_SIGN_X_POS, 29*mm, "Director Signature")
+    
+    c.setFont("Times-Roman", 10)
+    c.drawCentredString(CERT_SIGN_X_POS, 30*mm, "With Gratitude,")
+    c.setFont("Times-Bold", 12)
+    c.drawCentredString(CERT_SIGN_X_POS, 25*mm, "Director")
 
     c.showPage()
     c.save()
@@ -180,16 +199,16 @@ def generate_certificate(data, logo_bytes, sign_bytes, char_images_bytes):
     return buffer
 
 # ---------------- STREAMLIT UI ----------------
-st.set_page_config(page_title="Murlidhar Awards", page_icon="🎓", layout="centered")
-st.title("🎓 Murlidhar Academy Awards")
-st.caption("Generate Certificates for Staff & Experts")
+st.set_page_config(page_title="Royal Awards", page_icon="👑", layout="centered")
+st.title("👑 Murlidhar Royal Awards")
+st.caption("Generate Royal Certificates for Staff & Experts")
 
 # Load Assets
 if 'logo_data' not in st.session_state: st.session_state['logo_data'] = download_image_from_drive(LOGO_ID)
 if 'sign_data' not in st.session_state: st.session_state['sign_data'] = download_image_from_drive(SIGNATURE_ID)
 if 'char_images' not in st.session_state:
     st.session_state['char_images'] = {}
-    with st.spinner("Loading Images..."):
+    with st.spinner("Loading Royal Gallery..."):
         for name, file_id in CHAR_IDS.items():
             img_data = download_image_from_drive(file_id)
             if img_data: st.session_state['char_images'][name] = img_data
@@ -278,7 +297,7 @@ with st.container():
 
     final_desc = st.text_area("Award Description", award_desc, height=100)
 
-    if st.button("📄 Generate Certificate", type="primary"):
+    if st.button("⚜️ Generate Royal Certificate", type="primary"):
         if not recipient_name or not selected_key:
             st.error("Please enter a name and select a valid award category.")
         else:
@@ -290,13 +309,13 @@ with st.container():
                 "char_key": selected_key
             }
             
-            pdf_bytes = generate_certificate(
+            pdf_bytes = generate_royal_certificate(
                 data, 
                 st.session_state['logo_data'], 
                 st.session_state['sign_data'], 
                 st.session_state['char_images']
             )
             
-            fname = f"Certificate_{recipient_name.replace(' ','_')}.pdf"
+            fname = f"Royal_Award_{recipient_name.replace(' ','_')}.pdf"
             st.success(f"Certificate Created for {recipient_name}!")
             st.download_button("📥 Download PDF", pdf_bytes, file_name=fname, mime="application/pdf")
